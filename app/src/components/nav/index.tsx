@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Navbar } from 'react-bootstrap'
 import AccountContainer from './accountContainer'
 
-export default class NavMenu extends React.Component<any, any> {
+export default class NavMenu extends React.Component<{}, {}> {
 
   public render() {
     return (

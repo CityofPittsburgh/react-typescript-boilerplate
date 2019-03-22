@@ -6,7 +6,11 @@ import { connect } from 'react-redux'
 import { ApplicationState } from '../../store'
 import * as user from '../../store/user'
 
-class Hydrate extends React.Component<any, {}> {
+type props = {
+    loadUser: () => void
+}
+
+class Hydrate extends React.Component<props, {}> {
 
     componentDidMount() {
         this.props.loadUser()
@@ -24,4 +28,4 @@ export default connect(
     ({
         ...user.actionCreators,
     })
-)(Hydrate)
+)(Hydrate as any)
