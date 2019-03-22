@@ -3,7 +3,15 @@ import * as React from 'react'
 // props for pagination:
 // https://stackoverflow.com/questions/40232847/how-to-implement-pagination-in-reactjs
 
-export default class Paging extends React.Component<any, any> {
+type props = {
+    currentPage: number
+    totalPages: Array<number>
+    countItems: Array<string>
+    prev: () => void
+    next: () => void
+}
+
+export default class Paging extends React.Component<props, {}> {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.currentPage != nextProps.currentPage) {

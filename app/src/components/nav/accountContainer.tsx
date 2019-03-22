@@ -6,7 +6,7 @@ import * as types from './../../store/types'
 import * as user from '../../store/user'
 
 type props = {
-    user: types.user,
+    user: types.user
     loadUser: () => void
 }
 
