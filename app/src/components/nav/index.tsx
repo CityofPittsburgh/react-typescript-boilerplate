@@ -16,7 +16,7 @@ export default class NavMenu extends React.Component<any, any> {
       >
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>ad monitor</Link>
+            <Link to={'/'}>boilerplate</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
