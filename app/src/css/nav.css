@@ -18,7 +18,7 @@
     background-image: -webkit-linear-gradient(top, black 0%, black 100%) !important;
     background-color: black !important;
     border-color: black !important;
-    margin-top: 5px;
+    padding-top: 5px;
 }
 
 .navbar-fixed-top {
