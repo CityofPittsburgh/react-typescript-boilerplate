@@ -5,7 +5,7 @@ type props = {
     placeholder: string
     header: string
     required: boolean
-    callback: (value: string) => void
+    callback: (value: any) => void
 }
 
 export default class Input extends React.Component<props, {}> {

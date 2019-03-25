@@ -7,7 +7,7 @@ type props = {
     header: string
     required: boolean
     options: object
-    callback: (value: string) => void
+    callback: (value: any) => void
 }
 
 export default class Flex extends React.Component<props, {}> {

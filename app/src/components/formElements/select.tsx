@@ -8,7 +8,7 @@ type props = {
     required: boolean
     options: Array<object>
     multi: boolean
-    onChange: (selects: string) => void
+    onChange: (selects: any) => void
 }
 
 export default class SelectElement extends React.Component<props, {}> {
