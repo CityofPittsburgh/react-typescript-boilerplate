@@ -1,37 +1,31 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import { ApplicationState } from '../../store'
-import * as MessageStore from '../../store/messages'
+import React from "react";
+import { connect } from "react-redux";
+import { ApplicationState } from "../../store";
+import { Alert } from "react-bootstrap";
+import * as messages from "../../store/messages";
 
-export class Messages extends React.Component<any, {}> {
+type props = {
+  message: string;
+  clearMessage: () => void;
+};
 
-    createMarkup() {
-        return { __html: this.props.message };
-    }
+const MessageContainer = (props: props) => {
+  function createMarkup() {
+    return { __html: props.message };
+  }
 
-    clearMessage() { 
-        this.props.clearMessage()
-    }
-
-    public render() {
-        return (
-            this.props.message ? (
-                <div className="alert alert-success">
-                    <button className="close" onClick={this.clearMessage.bind(this)} style={{ marginTop: '-15px', marginRight: '-5px', fontSize: '2em' }}>
-                        <span>&times;</span>
-                    </button>
-                    <h3 dangerouslySetInnerHTML={this.createMarkup()}></h3>
-                </div >
-            ) : null
-        )
-    }
-}
+  return props.message ? (
+    <Alert variant="warning" onClose={() => props.clearMessage()} dismissible>
+      <div dangerouslySetInnerHTML={createMarkup()} />
+    </Alert>
+  ) : null;
+};
 
 export default connect(
-    (state: ApplicationState) => ({
-        ...state.messages
-    }),
-    ({
-        ...MessageStore.actionCreators,
-    })
-)(Messages)
+  (state: ApplicationState) => ({
+    ...state.messages
+  }),
+  {
+    ...messages.actionCreators
+  }
+)(MessageContainer);

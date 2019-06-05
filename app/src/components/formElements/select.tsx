@@ -1,37 +1,39 @@
-import * as React from 'react'
-import Select from 'react-select'
+import  React from "react";
+import Select from "react-select";
+import { Form } from "react-bootstrap";
+import Required from "./required";
 
 type props = {
-    value: string
-    placeholder: string
-    header: string
-    required: boolean
-    options: Array<object>
-    multi: boolean
-    onChange: (selects: any) => void
-}
+  value: string;
+  placeholder: string;
+  header: string;
+  required: boolean;
+  options: Array<object>;
+  multi: boolean;
+  onChange: (selects: any) => void;
+};
 
-export default class SelectElement extends React.Component<props, {}> {
-    
-    public render() {
-        return (
-            <div className="form-group">
-                <div className="col-md-12 form-element">
-                    <h5 className="form-h4">{this.props.header}{this.props.required == true && <span style={{ color: 'red', fontSize: '20' }}>*</span>}</h5>
-                    <Select
-                        placeholder={this.props.placeholder}
-                        value={this.props.value}
-                        onChange={this.props.onChange}
-                        options={this.props.options}
-                        closeMenuOnSelect={!this.props.multi}
-                        blurInputOnSelect={!this.props.multi}
-                        simpleValue={this.props.multi}
-                        removeSelected={this.props.multi}
-                        isMulti={this.props.multi}
-                        clearable={this.props.multi}
-                    />
-                </div>
-            </div>
-        )
-    }
-}
+const SelectElement = (props: props) => {
+  return (
+    <Form.Group>
+      <Form.Label>
+        {props.header}
+        {props.required && <Required />}
+      </Form.Label>
+      <Select
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onChange}
+        options={props.options}
+        closeMenuOnSelect={!props.multi}
+        blurInputOnSelect={!props.multi}
+        simpleValue={props.multi}
+        removeSelected={props.multi}
+        isMulti={props.multi}
+        clearable={props.multi}
+      />
+    </Form.Group>
+  );
+};
+
+export default SelectElement;

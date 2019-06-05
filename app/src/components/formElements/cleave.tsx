@@ -1,32 +1,34 @@
-import * as React from 'react'
-import Cleave from 'cleave.js/react'
+import React from "react";
+import { Form } from "react-bootstrap";
+import Cleave from "cleave.js/react";
+import Required from "./required";
 
 type props = {
-    value: string
-    placeholder: string
-    header: string
-    required: boolean
-    options: object
-    callback: (value: any) => void
-}
+  value: string;
+  placeholder: string;
+  header: string;
+  required: boolean;
+  options: object;
+  callback: (value: any) => void;
+};
 
-export default class Flex extends React.Component<props, {}> {
+const Flex = (props: props) => {
+  return (
+    <Form.Group>
+      <Form.Label>
+        {props.header}
+        {props.required && <Required />}
+      </Form.Label>
+      <Cleave
+        type="search"
+        className="form-control"
+        options={props.options}
+        value={props.value}
+        placeholder={props.placeholder}
+        onChange={v => props.callback(v)}
+      />
+    </Form.Group>
+  );
+};
 
-    public render() {
-        return (
-            <div className="form-group">
-                <div className="col-md-12 form-element">
-                    <h5 className="form-h4">{this.props.header}{this.props.required == true && <span style={{ color: 'red', fontSize: '20' }}>*</span>}</h5>
-                    <Cleave
-                        type='search'
-                        className='form-control'
-                        options={this.props.options}
-                        value={this.props.value}
-                        placeholder={this.props.placeholder}
-                        onChange={this.props.callback.bind(this)}>
-                    </Cleave>
-                </div>
-            </div>
-        )
-    }
-}
+export default Flex;

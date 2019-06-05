@@ -1,51 +1,50 @@
-import * as React from 'react'
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
+import Required from "./required";
 
 type props = {
-    value: string
-    placeholder: string
-    header: string
-    required: boolean
-    callback: (value: any) => void
-}
+  value: string;
+  placeholder: string;
+  header: string;
+  required: boolean;
+  callback: (value: any) => void;
+};
 
-export default class Textarea extends React.Component<props, any> {
-    constructor(props) {
-        super(props)
-        this.state = {
-            height: '100px'
-        }
-    }
+type state = {
+  height: string;
+};
 
-    setHeight(element) {
-        let newHeight = element.target.scrollHeight
-        if (newHeight > 98) {
-            this.setState({
-                height: newHeight + 'px'
-            })
-        }
-        if (element.target.value == '') {
-            this.setState({
-                height: '100px'
-            })
-        }
-    }
+const Textarea = (props: props) => {
+  const [height, setHeight] = useState<state["height"]>("100px");
 
-    public render() {
-        return (
-            <div className="form-group">
-                <div className="col-md-12 form-element">
-                    <h5>{this.props.header}{this.props.required == true && <span style={{ color: 'red', fontSize: '20' }}>*</span>}</h5>
-                    <textarea
-                        onKeyUp={this.setHeight.bind(this)}
-                        onFocus={this.setHeight.bind(this)}
-                        value={this.props.value}
-                        className='form-control'
-                        placeholder={this.props.placeholder}
-                        style={{ height: this.state.height }}
-                        onChange={this.props.callback.bind(this)}>
-                    </textarea>
-                </div>
-            </div>
-        )
+  function calcHeight(element) {
+    let newHeight = element.target.scrollHeight;
+    if (newHeight > 98) {
+      setHeight(newHeight + "px");
     }
-}
+    if (element.target.value == "") {
+      setHeight("100px");
+    }
+  }
+
+  return (
+    <Form.Group>
+      <Form.Label>
+        {props.header}
+        {props.required && <Required />}
+      </Form.Label>
+      <Form.Control
+        type="text"
+        onKeyUp={e => calcHeight(e)}
+        onFocus={e => calcHeight(e)}
+        value={props.value}
+        className="form-control"
+        placeholder={props.placeholder}
+        style={{ height: height }}
+        onChange={v => props.callback(v)}
+      />
+    </Form.Group>
+  );
+};
+
+export default Textarea;

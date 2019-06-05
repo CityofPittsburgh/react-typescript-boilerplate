@@ -1,29 +1,22 @@
-import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { Navbar } from 'react-bootstrap'
-import AccountContainer from './accountContainer'
+import React from "react";
+import { Nav, Navbar } from "react-bootstrap";
+import AccountContainer from "./accountContainer";
 
-export default class NavMenu extends React.Component<{}, {}> {
-
-  public render() {
-    return (
-      <Navbar
-        inverse
-        fixedTop
-        fluid
-        collapseOnSelect
-        style={{ zIndex: 1000 as any }}
+const NavMenu = () => {
+  return (
+    <Navbar collapseOnSelect expand="lg" variant="dark">
+      <Navbar.Brand href="/">Boilerplate</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse
+        id="responsive-navbar-nav"
+        className="justify-content-end"
       >
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to={'/'}>boilerplate</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse className='text-xs-center'>
+        <Nav>
           <AccountContainer />
-        </Navbar.Collapse>
-      </Navbar>
-    )
-  }
-}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+};
+
+export default NavMenu;

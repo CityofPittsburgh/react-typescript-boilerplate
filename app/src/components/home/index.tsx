@@ -1,35 +1,33 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import { ApplicationState } from '../../store'
-import HydrateStore from '../utilities/hydrateStore'
-import * as types from '../../store/types'
-import Spinner from '../utilities/spinner'
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { ApplicationState } from "../../store";
+import HydrateStore from "../utilities/hydrateStore";
+import { Container, Col, Row } from "react-bootstrap";
+import * as types from "../../store/types";
+import Spinner from "../utilities/spinner";
 
-type props = {
+type props = {};
 
-}
+type stateField = boolean;
 
-export class Home extends React.Component<props, {}> {
+const Home = props => {
+  const [state, newState] = useState<stateField>(false);
 
-    componentDidMount() {
-        window.scrollTo(0, 0)
-    }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    render() {
-        return (
-            <div>
-                <HydrateStore />
-
-            </div>
-        )
-    }
-}
+  return (
+    <Container>
+      <HydrateStore />
+      <Row>
+        <Col md={{ span: 4, offset: 4 }} />
+      </Row>
+    </Container>
+  );
+};
 
 export default connect(
-    (state: ApplicationState) => ({
-
-    }),
-    ({
-
-    })
-)(Home as any)
+  (state: ApplicationState) => ({}),
+  {}
+)(Home as any);
