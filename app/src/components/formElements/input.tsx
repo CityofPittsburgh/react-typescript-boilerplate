@@ -18,7 +18,7 @@ const Input = (props: props) => {
         {props.required && <Required />}
       </Form.Label>
       <Form.Control
-        type="text"
+        type="search"
         placeholder={props.placeholder}
         onChange={v => props.callback(v)}
         value={props.value}

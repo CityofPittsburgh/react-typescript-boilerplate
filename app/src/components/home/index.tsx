@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { ApplicationState } from "../../store";
 import HydrateStore from "../utilities/hydrateStore";
 import { Container, Col, Row } from "react-bootstrap";
-import * as types from "../../store/types";
-import Spinner from "../utilities/spinner";
+import Form from "../demoForm"
 
-type props = {};
-
-type stateField = boolean;
-
-const Home = props => {
-  const [state, newState] = useState<stateField>(false);
-
+const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,7 +14,9 @@ const Home = props => {
     <Container>
       <HydrateStore />
       <Row>
-        <Col md={{ span: 4, offset: 4 }} />
+        <Col md={{ span: 4, offset: 4 }}>
+          <Form/>
+        </Col>
       </Row>
     </Container>
   );

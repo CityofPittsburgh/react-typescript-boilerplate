@@ -34,11 +34,10 @@ const Textarea = (props: props) => {
         {props.required && <Required />}
       </Form.Label>
       <Form.Control
-        type="text"
+        as="textarea"
         onKeyUp={e => calcHeight(e)}
         onFocus={e => calcHeight(e)}
         value={props.value}
-        className="form-control"
         placeholder={props.placeholder}
         style={{ height: height }}
         onChange={v => props.callback(v)}

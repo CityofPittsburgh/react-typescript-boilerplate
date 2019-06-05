@@ -9,3 +9,6 @@ export interface user {
 export interface messsage {
   message: string;
 }
+
+// select
+export type select = { value: string; label: string };

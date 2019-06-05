@@ -2,13 +2,14 @@ import  React from "react";
 import Select from "react-select";
 import { Form } from "react-bootstrap";
 import Required from "./required";
+import * as types from "../../store/types";
 
 type props = {
-  value: string;
+  value: types.select;
   placeholder: string;
   header: string;
   required: boolean;
-  options: Array<object>;
+  options: Array<types.select>;
   multi: boolean;
   onChange: (selects: any) => void;
 };
