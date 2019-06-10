@@ -6,14 +6,10 @@ However, I (Paul Marks) have done my best to keep all production apps in step wi
 
 ## Design
 Frameworks and languages aside, there were two primary design choices that went into this boilerplate: 
-> 1. A config-free build.  Because I hate Webpack, and Webpack hates me.
-> 2. An auth module that can authenticate any City of Pittsburgh employee through an open, web-based protocol.
+1. A config-free build.  Because I hate Webpack, and Webpack hates me.
+2. An auth module that can authenticate any City of Pittsburgh employee through an open, web-based protocol.
 
-The product?  A [CRA](https://github.com/facebook/create-react-app) served up from [node](https://nodejs.org/en/) with a [passport](http://www.passportjs.org/) config via [Outlook](http://www.passportjs.org/packages/passport-outlook/), the City's email service provider.
-
-Plus [redux](https://redux.js.org/), because state management is sick.
-
-Plus [typescript](https://www.typescriptlang.org/), because type safety and polymorphism are also sick.
+The product?  A [CRA](https://github.com/facebook/create-react-app) served up from [node](https://nodejs.org/en/) with a [passport](http://www.passportjs.org/) config via [Outlook](http://www.passportjs.org/packages/passport-outlook/), the City's email service provider.  Plus [redux](https://redux.js.org/), because state management is sick.  Plus [typescript](https://www.typescriptlang.org/), because type safety and polymorphism are also sick.
 
 ## Structure    
     ├── app                         # Client application
