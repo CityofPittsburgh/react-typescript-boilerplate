@@ -7,7 +7,7 @@ However, I (Paul Marks) have done my best to keep all production apps in step wi
 ## Design
 Frameworks and languages aside, there were two primary design choices that went into this boilerplate: 
 1. A config-free build.  Because I hate Webpack, and Webpack hates me.
-2. An auth module that can authenticate any City of Pittsburgh employee through an open, web-based protocol.
+2. An authentication service that can authenticate any City of Pittsburgh employee through an open, web-based protocol.
 
 The product?  A [CRA](https://github.com/facebook/create-react-app) served up from [node](https://nodejs.org/en/) with a [passport](http://www.passportjs.org/) config via [Outlook](http://www.passportjs.org/packages/passport-outlook/), the City's email service provider.  Plus [redux](https://redux.js.org/), because state management is sick.  Plus [typescript](https://www.typescriptlang.org/), because type safety and polymorphism are also sick.
 
@@ -52,6 +52,7 @@ git clone https://github.com/CityofPittsburgh/react-typescript-boilerplate
 cd react-typescript-boilerplate
 ```
 
+### Development
 There are two different ways to run this application.   The first is the "development" mode and involves booting up from the app directory.  In this mode, authentication is bypassed, and the application is started on port 3000 with [hot module reloading](https://webpack.js.org/concepts/hot-module-replacement/).  From the root directory:
 ```
 cd app
@@ -61,8 +62,10 @@ npm install
 npm start
 // like what you've done?
 // run the build
+npm run build
 ```
 
+### Production
 The second mode -- "production" mode -- involves booting up the node server, which passes you through the auth flow, and then delivers the minified build from app/build.  From the root directory:
 ```
 // install dependencies for the server
