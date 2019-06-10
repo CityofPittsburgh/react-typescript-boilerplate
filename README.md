@@ -34,6 +34,11 @@ The product?  A [CRA](https://github.com/facebook/create-react-app) served up fr
     ├── auth                        # Static assets used in authentication workflow
     server.js                       # node server and entry point in production
 
+
+## Authentication & Access
+
+## Classes vs. Hooks
+
 ## Running Locally
 
 ### Prerequisites
@@ -45,17 +50,24 @@ The product?  A [CRA](https://github.com/facebook/create-react-app) served up fr
 ```
 git clone https://github.com/CityofPittsburgh/react-typescript-boilerplate
 cd react-typescript-boilerplate
-// first, install dependencies for the server
-npm install
-// then, install dependencies for the client
+```
+
+There are two different ways to run this application.   The first is the "development" mode and involves booting up from the app directory.  In this mode, authentication is bypassed, and the application is started on port 3000 with [hot module reloading](https://webpack.js.org/concepts/hot-module-replacement/).  From the root directory:
+```
 cd app
+// install dependencies for the client
 npm install
-// to run the app locally and bypass auth
+// start the app
 npm start
-// to bundle the app for deployment
-npm run build
-// to run the app from the minified build, with auth workflow
-cd ..
+// like what you've done?
+// run the build
+```
+
+The second mode -- "production" mode -- involves booting up the node server, which passes you through the auth flow, and then delivers the minified build from app/build.  From the root directory:
+```
+// install dependencies for the server
+npm install
+// start node
 node server.js
 ```
 
