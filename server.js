@@ -55,7 +55,7 @@ Endpoints!!
 Only one to retrieve email
 */
 
-// returns user's email address
+// returns user profile
 app.use('/getUser', function (req, res) {
   res.status(200).send({
     'email': req.user.emails[0].value,

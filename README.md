@@ -1,17 +1,17 @@
 # React/Redux/Typescript Boilerplate
 
-This repository contains a boilerplate application that has served as the starting point for many of the client apps in production at the City of Pittsburgh.  Note that if you were directed here by a README file in one of these production applications, it is likely not entirely in step with this boilerplate.  Software being such a delightfully amorphous phenomenon, the boilerplate used to spin up [ACC Mobile](https://github.com/CityofPittsburgh/ACCmobile) two years ago was of course different than that used to spin up [Confiscated Guns](https://github.com/CityofPittsburgh/confiscated-guns) last week.  
+This repository contains a boilerplate application that has served as the starting point for many of the client apps in production at the City of Pittsburgh.  Note that if you were directed here by a README in one of these, it is likely not entirely in step with this boilerplate.  Software being amorphous, the boilerplate used to spin up [ACC Mobile](https://github.com/CityofPittsburgh/ACCmobile) two years ago was of course different than that used to spin up [Confiscated Guns](https://github.com/CityofPittsburgh/confiscated-guns) last week.  
 
 However, I (Paul Marks) have done my best to keep all production apps in step with changes to the boilerplate, as the boilerplate has served as the most up-to-date iteration of this type of application.  In older applications, libraries may need updated, markup may need replaced with [react-bootstrap](https://react-bootstrap.github.io/), and [classes may need replaced with hooks](https://reactjs.org/docs/hooks-faq.html)...but beyond that, the overall structure and design should be identical.
 
 ## Design
 Frameworks and languages aside, there were two primary design choices that went into this boilerplate: 
 1. A config-free build.  Because I hate Webpack, and Webpack hates me.
-2. An authentication service that can authenticate any City of Pittsburgh employee through an open, web-based protocol.
+2. An authentication service that can authenticate City of Pittsburgh employees through an open, web-based protocol.
 
 The product?  A [CRA](https://github.com/facebook/create-react-app) served up from [node](https://nodejs.org/en/) with a [passport](http://www.passportjs.org/) config via [Outlook](http://www.passportjs.org/packages/passport-outlook/), the City's email service provider.  Plus [redux](https://redux.js.org/), because state management is sick.  Plus [typescript](https://www.typescriptlang.org/), because type safety and polymorphism are also sick.
 
-Oh and also, [bootstrap](https://getbootstrap.com/) for the UI: v4 in the newer apps, v3 in the older ones.
+And also [bootstrap](https://getbootstrap.com/) for the UI: v4 in the newer apps, v3 in the older ones.
 
 ## Structure    
     ├── app                         # Client application
@@ -38,8 +38,46 @@ Oh and also, [bootstrap](https://getbootstrap.com/) for the UI: v4 in the newer 
 
 
 ## Authentication & Access
+Authentication is handled by [passport](http://www.passportjs.org/) via the Outlook OAuth service.  Access is provided if the email address returned from Outlook ends with "@pittsburghpa.gov."  In some applications, further access control is implemented by querying users groups in Sharepoint, and checking the returned user against the group.
+
+When users hit the node server, a wildcard catches all traffic and checks if the user is authenticated.  If not, then they're passed through the auth workflow and returned to the wildcard route.  The wildcard route serves up the minified build.  All further routing occurs within the client app.
+
+```javascript
+// catches all traffic
+// checks for authentication
+// returns build
+app.get('*', ensureAuthenticated, (req, res) => {
+  const link = (req.path == '/' ? 'index.html' : req.path)
+  const root = path.join(__dirname, 'app/build')
+  res.sendFile(link, {
+    root: root
+  }, (error) => {
+    if (error) {
+      res.sendFile('/', {
+        root: root
+      })
+    }
+  })
+})
+```
+
+The user profile is maintained on the server, and called up from the client to populate the user store.  The /getUser endpoint is the only real endpoint on the server:
+
+```javascript
+// returns user profile
+app.use('/getUser', function (req, res) {
+  res.status(200).send({
+    'email': req.user.emails[0].value,
+    'organization': "City of Pittsburgh",
+    'name': req.user.displayName
+  })
+})
+```
 
 ## Classes vs. Hooks
+With version 16.8, React introduced the [hooks API](https://reactjs.org/docs/hooks-intro.html).  Hooks permit pure functions to access the lifecycle methods, whereas in previous versions lifecycle methods were only exposed to class components.  
+
+This boilerplate has been rewritten to favor hooks over class-based components, and a handful of more recent projects have implemented a hooks-first design.  It's much less verbose, and quicker to write.  The tradeoff: it's much less explicit.  If you're referencing this boilerplate in working with a production application that is chocked full of classes, you'll want to spend some time with the [docs](https://reactjs.org/docs/hooks-reference.html#basic-hooks) to get a fix on the mapping between lifecycle management in classes vs. functions.
 
 ## Running Locally
 
