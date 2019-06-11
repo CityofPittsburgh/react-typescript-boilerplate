@@ -28,7 +28,7 @@ The product?
                 |── demoForm            # Demo form...plug-n-play data entry         
                 |── formElements        # Standardized, type-safe form elements with headers
                   |── cleave.tsx        # Cleave.js wrapper
-                  |── input.tsx         # Message/alert component
+                  |── input.tsx         # Input wrapper
                   |── required.tsx      # Little red asterisks when required==true
                   |── select.tsx        # React-select wrapper 
                   |── textarea.tsx      # Expandable textarea      
