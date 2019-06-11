@@ -9,32 +9,47 @@ Frameworks and languages aside, there were two primary design choices that went 
 1. A config-free build.  Because I hate Webpack, and Webpack hates me.
 2. An authentication service that can authenticate City of Pittsburgh employees through an open, web-based protocol.
 
-The product?  A [CRA](https://github.com/facebook/create-react-app) served up from [node](https://nodejs.org/en/) with a [passport](http://www.passportjs.org/) config via [Outlook](http://www.passportjs.org/packages/passport-outlook/), the City's email service provider.  Plus [redux](https://redux.js.org/), because state management is sick.  Plus [typescript](https://www.typescriptlang.org/), because type safety and polymorphism are also sick.
-
-And also [bootstrap](https://getbootstrap.com/) for the UI: v4 in the newer apps, v3 in the older ones.
+The product?  
+* A [CRA](https://github.com/facebook/create-react-app) served up from 
+* [node](https://nodejs.org/en/) with a 
+* [passport](http://www.passportjs.org/) config via 
+* [Outlook](http://www.passportjs.org/packages/passport-outlook/), the City's email service provider.  
+* Plus [redux](https://redux.js.org/), because state management is sick,  
+* and [typescript](https://www.typescriptlang.org/), because type safety and polymorphism are also sick.
+* And let's not forget [prettier](https://prettier.io/) for formatting,
+* and [bootstrap](https://getbootstrap.com/) for the UI: v4 in the newer apps, v3 in the older ones.
 
 ## Structure    
-    ├── app                         # Client application
-        ├── build                   # Minified build, served to client in prod
-        ├── public                  # Public dir
-        ├── src                     # Source code, client app         
-            ├── components          # All react components          
-                |── demoForm        # Demo form...plug-n-play data entry         
-                |── formElements    # Standardized, type-safe form elements          
-                |── home            # Landing page
-                |── nav             # Navigation elements    
-                |── utilities       # Util components          
-            ├── css                 # All vanilla css
-            ├── functions           # Global functions
-            ├── images              # ...you guessed it
-            ├── store               # Redux store
-                |── constants       # Global const definitions         
-                |── types           # Global type definitions   
-                index.ts            # Store config
-                messages.ts         # Message store -- error, success, etc.       
-                user.ts             # User store -- persists user info
-    ├── auth                        # Static assets used in authentication workflow
-    server.js                       # node server and entry point in production
+    ├── app                             # Client application
+        ├── build                       # Minified build, served to client in prod
+        ├── public                      # Public dir
+        ├── src                         # Source code, client app         
+            ├── components              # All react components          
+                |── demoForm            # Demo form...plug-n-play data entry         
+                |── formElements        # Standardized, type-safe form elements with headers
+                  |── cleave.tsx        # Cleave.js wrapper
+                  |── input.tsx         # Message/alert component
+                  |── required.tsx      # Little red asterisks when required==true
+                  |── select.tsx        # React-select wrapper 
+                  |── textarea.tsx      # Expandable textarea      
+                |── home                # Landing page
+                |── nav                 # Navigation elements    
+                |── utilities           # Util components
+                  |── hydrateStore.tsx  # Component hydrates entire store 
+                  |── messages.tsx      # Message/alert component
+                  |── paging.tsx        # Paging for arrays of objects
+                  |── spinner.tsx       # Spinner when stuff is loading
+            ├── css                     # All vanilla css
+            ├── functions               # Global functions
+            ├── images                  # ...you guessed it
+            ├── store                   # Redux store
+                |── constants           # Global const definitions         
+                |── types               # Global type definitions   
+                index.ts                # Store config
+                messages.ts             # Message store -- error, success, etc.       
+                user.ts                 # User store -- persists user info
+    ├── auth                            # Static assets used in authentication workflow
+    server.js                           # node server and entry point in production
 
 
 ## Authentication & Access
@@ -79,12 +94,14 @@ With version 16.8, React introduced the [hooks API](https://reactjs.org/docs/hoo
 
 This boilerplate has been rewritten to favor hooks over class-based components, and a handful of more recent projects have implemented a hooks-first design.  It's much less verbose, and quicker to write.  The tradeoff: it's much less explicit.  If you're referencing this boilerplate in working with a production application that is chocked full of classes, you'll want to spend some time with the [docs](https://reactjs.org/docs/hooks-reference.html#basic-hooks) to get a fix on the mapping between lifecycle management in classes vs. functions.
 
+## Environment variables
+
 ## Running Locally
 
 ### Prerequisites
 
 * [Node.js](https://nodejs.org) - JS runtime
-* .env - See .env.example for all required secrets
+* [Outlook Client ID & Secret](https://docs.microsoft.com/en-us/graph/auth-register-app-v2) - Appl registration with Microsoft for auth
 
 ### Installation
 ```
