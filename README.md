@@ -99,7 +99,7 @@ This boilerplate has been rewritten to favor hooks over class-based components, 
 ### Prerequisites
 
 * [Node.js](https://nodejs.org) - JS runtime
-* [Outlook Client ID & Secret](https://docs.microsoft.com/en-us/graph/auth-register-app-v2) - Appl registration with Microsoft for auth
+* [Outlook Client ID & Secret](https://docs.microsoft.com/en-us/graph/auth-register-app-v2) - App registration with Microsoft for auth
 
 ### Installation
 ```
