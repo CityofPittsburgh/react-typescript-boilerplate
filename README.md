@@ -90,7 +90,7 @@ app.use('/getUser', function (req, res) {
 ```
 
 ## Classes vs. Hooks
-With version 16.8, React introduced the [hooks API](https://reactjs.org/docs/hooks-intro.html).  Hooks permit pure functions to access the lifecycle methods, whereas in previous versions lifecycle methods were only exposed to class components.  
+With version 16.8, React introduced the [hooks API](https://reactjs.org/docs/hooks-intro.html).  Hooks permit pure functions to access the lifecycle methods, whereas in previous versions lifecycle methods were only exposed to class components.  Additionally, with closures, hooks facilitate the peristence of state between components without reliance on a  third party library, such as [Redux](https://redux.js.org/). 
 
 This boilerplate has been rewritten to favor hooks over class-based components, and a handful of more recent projects have implemented a hooks-first design.  It's much less verbose, and quicker to write.  The tradeoff: it's much less explicit.  If you're referencing this boilerplate in working with a production application that is chocked full of classes, you'll want to spend some time with the [docs](https://reactjs.org/docs/hooks-reference.html#basic-hooks) to get a fix on the mapping between lifecycle management in classes vs. functions.
 
