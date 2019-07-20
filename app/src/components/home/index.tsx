@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { ApplicationState } from "../../store";
 import HydrateStore from "../utilities/hydrateStore";
 import { Container, Col, Row } from "react-bootstrap";
-import Form from "../demoForm"
+import Form from "../demoForm";
+import Map from "../map";
 
 const Home = () => {
   useEffect(() => {
@@ -15,7 +16,8 @@ const Home = () => {
       <HydrateStore />
       <Row>
         <Col md={{ span: 4, offset: 4 }}>
-          <Form/>
+          <Form />
+          <Map />
         </Col>
       </Row>
     </Container>
