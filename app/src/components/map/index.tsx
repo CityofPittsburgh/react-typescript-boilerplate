@@ -1,12 +1,6 @@
 import React from "react";
 import { compose, withProps } from "recompose";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  InfoWindow
-} from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 
 const mapStyle = require("./style.json");
 const key = process.env.REACT_APP_GOOGLE_API;
@@ -39,9 +33,9 @@ const Map = () => {
   ));
 
   return (
-    <div className="home-map">
-      <MapComponent />
-    </div>
+      <div className="full-map">
+        <MapComponent />
+      </div>
   );
 };
 

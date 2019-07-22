@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Container, Col } from "react-bootstrap";
 import * as types from "../../store/types";
 import Input from "../formElements/input";
 import Select from "../formElements/select";
@@ -20,8 +19,7 @@ const Form = () => {
   const [cleave, setCleave] = useState<state["cleave"]>("");
 
   return (
-    <Container>
-      <Col md={12}>
+    <div>
         <Input
           value={input}
           placeholder="Input here"
@@ -56,8 +54,7 @@ const Form = () => {
           callback={e => setCleave(e.target.value)}
           options={{ creditCard: true }}
         />
-      </Col>
-    </Container>
+    </div>
   );
 };
 
