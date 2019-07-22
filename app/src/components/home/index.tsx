@@ -5,9 +5,8 @@ import * as types from "../../store/types";
 import * as user from "../../store/user";
 import HydrateStore from "../utilities/hydrateStore";
 import { Container, Col, Row } from "react-bootstrap";
-import FormHeader from "../demoForm/header";
+import Header from "./header";
 import Form from "../demoForm";
-import MapHeader from "../map/markup/header";
 import Map from "../map";
 
 type props = {
@@ -18,16 +17,19 @@ const Home = (props: props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   return (
     <Container>
       <HydrateStore />
       <Row>
         <Col md={{ span: 4, offset: 4 }}>
-          <FormHeader />
+          <Header content="Super important data collection" />
           <Form />
         </Col>
-        <MapHeader />
+        <Header
+          content="Super important map stuff"
+          style={{ marginTop: "80px" }}
+        />
         <Map />
       </Row>
       <br />
