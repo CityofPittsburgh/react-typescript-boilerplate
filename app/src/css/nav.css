@@ -25,3 +25,10 @@
     color: #fff;
     border-color: #fff;
 }
+
+@media (max-width: 950px) {
+    .navbar {
+        z-index: 1000;
+        background-color: black;
+    }
+}
