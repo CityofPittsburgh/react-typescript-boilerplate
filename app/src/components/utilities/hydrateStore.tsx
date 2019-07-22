@@ -11,7 +11,7 @@ type props = {
 const Hydrate = (props: props) => {
   useEffect(() => {
     props.loadUser();
-  });
+  }, []);
 
   return null;
 };

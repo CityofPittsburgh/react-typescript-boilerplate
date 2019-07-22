@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { ApplicationState } from "../../store";
+import * as types from "../../store/types";
+import * as user from "../../store/user";
 import HydrateStore from "../utilities/hydrateStore";
 import { Container, Col, Row } from "react-bootstrap";
 import FormHeader from "../demoForm/header";
@@ -8,11 +10,15 @@ import Form from "../demoForm";
 import MapHeader from "../map/markup/header";
 import Map from "../map";
 
-const Home = () => {
+type props = {
+  user: types.user;
+};
+
+const Home = (props: props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  
   return (
     <Container>
       <HydrateStore />
@@ -32,6 +38,10 @@ const Home = () => {
 };
 
 export default connect(
-  (state: ApplicationState) => ({}),
-  {}
+  (state: ApplicationState) => ({
+    ...state.user
+  }),
+  {
+    ...user.actionCreators
+  }
 )(Home as any);

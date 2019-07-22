@@ -4,6 +4,7 @@ import Input from "../formElements/input";
 import Select from "../formElements/select";
 import TextArea from "../formElements/textarea";
 import Cleave from "../formElements/cleave";
+import SubmitBtn from "./submit";
 
 type state = {
   input: string;
@@ -20,40 +21,38 @@ const Form = () => {
 
   return (
     <div>
-        <Input
-          value={input}
-          placeholder="Input here"
-          header="Input header"
-          required={true}
-          callback={e => setInput(e.target.value)}
-        />
-        <TextArea
-          value={textarea}
-          placeholder="Textarea here"
-          header="Textarea header"
-          required={true}
-          callback={e => setTextarea(e.target.value)}
-        />
-        <Select
-          value={select}
-          placeholder="Select here"
-          header="Select header"
-          required={true}
-          multi={true}
-          onChange={e => setSelect(e)}
-          options={[
-            { value: "Yes", label: "Yes" },
-            { value: "No", label: "No" }
-          ]}
-        />
-        <Cleave
-          value={cleave}
-          placeholder="Cleave here"
-          header="Cleave header"
-          required={true}
-          callback={e => setCleave(e.target.value)}
-          options={{ creditCard: true }}
-        />
+      <Input
+        value={input}
+        placeholder="Input here"
+        header="Input header"
+        required={true}
+        callback={e => setInput(e.target.value)}
+      />
+      <TextArea
+        value={textarea}
+        placeholder="Textarea here"
+        header="Textarea header"
+        required={true}
+        callback={e => setTextarea(e.target.value)}
+      />
+      <Select
+        value={select}
+        placeholder="Select here"
+        header="Select header"
+        required={true}
+        multi={true}
+        onChange={e => setSelect(e)}
+        options={[{ value: "Yes", label: "Yes" }, { value: "No", label: "No" }]}
+      />
+      <Cleave
+        value={cleave}
+        placeholder="Cleave here"
+        header="Cleave header"
+        required={true}
+        callback={e => setCleave(e.target.value)}
+        options={{ creditCard: true }}
+      />
+      <SubmitBtn formValid={true} />
     </div>
   );
 };
